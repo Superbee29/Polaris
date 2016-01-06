@@ -89,8 +89,8 @@
 			user << "Current text: [replacetext(text, "<", "\<")]"
 			id++
 			info_parts++ // id and info_parts are not necessarily the same numbers, as users can add text
-			text = copytext(text, 1, lastpart) + "<span class=\"part[id]><A href='?src=\ref[src];erase=[id]' class='info_link'>\[erase part\]</A>" + copytext(text, lastpart, laststart) + "<br>(FIELD PLACEHOLDER)</span>" + copytext(text, laststart)
-			laststart = found + length("<span class=\"part[id]><A href='?src=\ref[src];erase=[id]' class='info_link'>\[erase part\]</A><br>(FIELD PLACEHOLDER)</span>") + 1
+			text = copytext(text, 1, lastpart) + "<span class=\"part[id]><A href='?src=\ref[src];erase=[id]' class='info_link'>\[erase part\]</A>" + copytext(text, lastpart, laststart) + "<br>(FIELD PLACEHOLDER)</span><!--END_PART[id]-->" + copytext(text, laststart)
+			laststart = found + length("<span class=\"part[id]><A href='?src=\ref[src];erase=[id]' class='info_link'>\[erase part\]</A><br>(FIELD PLACEHOLDER)</span><!--END_PART[id]-->") + 1
 			lastpart = found
 
 	//reset for a new search
@@ -172,9 +172,10 @@
 
 /obj/structure/whiteboard/proc/clear_part(var/index)
 	var/start = findtext(info, "<span class=\"part[index]>")
+	usr << "Found desired part at [start]."
 	if (start == 0)
 		return
-	var/end = findtext(info, "<A href='?src=\ref[src];erase=[index]'>") + length("<A href='?src=\ref[src];erase=[index]'>erase part</A></span>")
+	var/end = findtext(info, "<!--END_PART[index]-->") + length("<!--END_PART[index]-->")
 	info = copytext(info, 1, start) + copytext(info, end)
 	count_fields()
 
