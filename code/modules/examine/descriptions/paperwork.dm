@@ -1,6 +1,6 @@
 /obj/item/weapon/pen
 	description_info = {"This is an item for writing down your thoughts, on paper or elsewhere. The following special commands are available:
-Pen and crayon commands
+Pen, crayon and marker commands
 \[br\] : Creates a linebreak.
 \[center\] - \[/center\] : Centers the text.
 \[h1\] - \[/h1\] : Makes the text a first level heading.
@@ -14,8 +14,8 @@ Pen and crayon commands
 \[field\] : Inserts an invisible field which lets you start type from there. Useful for forms.
 \[date\] : Inserts today's station date.
 \[time\] : Inserts the current station time.
-Pen exclusive commands
+Pen and marker commands
 \[small\] - \[/small\] : Decreases the size of the text.
 \[list\] - \[/list\] : A list.
 \[*\] : A dot used for lists.
-\[hr\] : Adds a horizontal rule."}
+\[hr\] : Adds a horizontal rule. When writing on a whiteboard, this will also split the text into parts (the parts can be erased separately)."}
