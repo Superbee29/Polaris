@@ -391,6 +391,12 @@ var/global/list/gear_datums = list()
 	slot = slot_w_uniform
 	cost = 1
 
+/datum/gear/harness
+	display_name = "gear harness"
+	path = /obj/item/clothing/under/harness
+	slot = slot_w_uniform
+	cost = 1
+
 /datum/gear/cuttop/red
 	display_name = "cut top, red"
 	path = /obj/item/clothing/under/cuttop/red
@@ -496,7 +502,7 @@ var/global/list/gear_datums = list()
 /datum/gear/skirt/med
 	display_name = "skirt, medical"
 	path = /obj/item/clothing/under/rank/medical/skirt
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Paramedic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
 
 /datum/gear/skirt/sci
 	display_name = "skirt, scientist"

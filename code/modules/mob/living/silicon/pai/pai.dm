@@ -86,6 +86,7 @@
 	add_language("Sol Common", 1)
 	add_language("Tradeband", 1)
 	add_language("Gutter", 1)
+	add_language("Encoded Audio Language", 1)
 
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
 	verbs += /mob/living/silicon/pai/proc/choose_verbs
@@ -412,8 +413,8 @@
 	return 0
 
 // Handle being picked up.
-/mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber)
-	var/obj/item/weapon/holder/H = ..()
+/mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
+	var/obj/item/weapon/holder/H = ..(grabber, self_drop)
 	if(!istype(H))
 		return
 	H.icon_state = "pai-[icon_state]"
