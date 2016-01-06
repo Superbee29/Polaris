@@ -89,8 +89,8 @@
 			user << "Current text: [replacetext(text, "<", "\<")]"
 			id++
 			info_parts++ // id and info_parts are not necessarily the same numbers, as users can add text
-			text = copytext(text, 1, lastpart) + "<span class=\"part[id]>" + copytext(text, lastpart, laststart) + "<br>(FIELD PLACEHOLDER)<A href='?src=\ref[src];erase=[id]'>erase part</A></span>" + copytext(text, laststart)
-			laststart = found + length("<span class=\"part[id]><br>(FIELD PLACEHOLDER)<A href='?src=\ref[src];erase=[id]' class='info_link'>\[erase part\]</A></span>") + 1
+			text = copytext(text, 1, lastpart) + "<span class=\"part[id]><A href='?src=\ref[src];erase=[id]' class='info_link'>\[erase part\]</A>" + copytext(text, lastpart, laststart) + "<br>(FIELD PLACEHOLDER)</span>" + copytext(text, laststart)
+			laststart = found + length("<span class=\"part[id]><A href='?src=\ref[src];erase=[id]' class='info_link'>\[erase part\]</A><br>(FIELD PLACEHOLDER)</span>") + 1
 			lastpart = found
 
 	//reset for a new search
@@ -152,7 +152,7 @@
 
 		t = replacetext(t, "\n", "<BR>")
 		write_info(t, id, i, usr)
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY><A href='?src=\ref[src];erase=all'>Erase all</A><br>[info]<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font></BODY></HTML>", "window=[name]")
+		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY><font face='[deffont]'><A href='?src=\ref[src];erase=all'>Erase all</A></font><br>[info]<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font></BODY></HTML>", "window=[name]")
 		update_icon()
 	if(href_list["erase"])
 		var/id = href_list["erase"]
