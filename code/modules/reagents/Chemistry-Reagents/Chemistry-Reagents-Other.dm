@@ -141,11 +141,6 @@
 	M.confused = 0
 	M.sleeping = 0
 	M.jitteriness = 0
-	for(var/datum/disease/D in M.viruses)
-		D.spread = "Remissive"
-		D.stage--
-		if(D.stage < 1)
-			D.cure()
 
 /datum/reagent/gold
 	name = "Gold"
@@ -328,16 +323,7 @@
 	if(!istype(T))
 		return
 	if(volume >= 1)
-		if(T.wet >= 2)
-			return
-		T.wet = 2
-		spawn(800)
-			if(!T || !istype(T))
-				return
-			T.wet = 0
-			if(T.wet_overlay)
-				T.overlays -= T.wet_overlay
-				T.wet_overlay = null
+		T.wet_floor(2)
 
 /datum/reagent/silicate
 	name = "Silicate"

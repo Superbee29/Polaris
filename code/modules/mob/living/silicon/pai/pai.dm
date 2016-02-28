@@ -7,6 +7,9 @@
 	pass_flags = 1
 	mob_size = MOB_SMALL
 
+	idcard_type = /obj/item/weapon/card/id
+	var/idaccessible = 0
+
 	var/network = "SS13"
 	var/obj/machinery/camera/current = null
 
@@ -126,9 +129,6 @@
 	if(istype(src.loc,/obj/item/device/paicard))
 		return 0
 	..()
-
-/mob/living/silicon/pai/MouseDrop(atom/over_object)
-	return
 
 /mob/living/silicon/pai/emp_act(severity)
 	// Silence for 2 minutes
@@ -396,18 +396,6 @@
 	resting = 0
 	icon_state = "[chassis]"
 
-/mob/living/silicon/pai/start_pulling(var/atom/movable/AM)
-
-	if(istype(AM,/obj/item))
-		var/obj/item/O = AM
-		if(O.w_class == 1)
-			..()
-		else
-			src << "<span class='warning'>You are too small to pull that.</span>"
-	else
-		src << "<span class='warning'>You are too small to pull that.</span>"
-		return
-
 // No binary for pAIs.
 /mob/living/silicon/pai/binarycheck()
 	return 0
@@ -422,11 +410,34 @@
 	grabber.update_inv_r_hand()
 	return H
 
-/mob/living/silicon/pai/MouseDrop(atom/over_object)
-	var/mob/living/carbon/H = over_object
-	if(!istype(H) || !Adjacent(H)) return ..()
-	if(H.a_intent == "help")
-		get_scooped(H)
-		return
+/mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	var/obj/item/weapon/card/id/ID = W.GetID()
+	if(ID)
+		if (idaccessible == 1)
+			switch(alert(user, "Do you wish to add access to [src] or remove access from [src]?",,"Add Access","Remove Access", "Cancel"))
+				if("Add Access")
+					idcard.access |= ID.access
+					user << "<span class='notice'>You add the access from the [W] to [src].</span>"
+					return
+				if("Remove Access")
+					idcard.access = null
+					user << "<span class='notice'>You remove the access from [src].</span>"
+					return
+				if("Cancel")
+					return
+		else if (istype(W, /obj/item/weapon/card/id) && idaccessible == 0)
+			user << "<span class='notice'>[src] is not accepting access modifcations at this time.</span>"
+			return
+
+/mob/living/silicon/pai/verb/allowmodification()
+	set name = "Change Access Modifcation Permission"
+	set category = "pAI Commands"
+	desc = "Allows people to modify your access or block people from modifying your access."
+
+	if(idaccessible == 0)
+		idaccessible = 1
+		src << "<span class='notice'>You allow access modifications.</span>"
+
 	else
-		return ..()
+		idaccessible = 0
+		src << "<span class='notice'>You block access modfications.</span>"

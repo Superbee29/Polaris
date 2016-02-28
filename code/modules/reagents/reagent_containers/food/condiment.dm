@@ -42,6 +42,8 @@
 
 			var/trans = reagents.trans_to_obj(target, amount_per_transfer_from_this)
 			user << "<span class='notice'>You add [trans] units of the condiment to \the [target].</span>"
+		else
+			..()
 
 	feed_sound(var/mob/user)
 		playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
@@ -50,8 +52,6 @@
 		user << "<span class='notice'>You swallow some of contents of \the [src].</span>"
 
 	on_reagent_change()
-		if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall" || icon_state == "flour")
-			return
 		if(reagents.reagent_list.len > 0)
 			switch(reagents.get_master_reagent_id())
 				if("ketchup")
@@ -126,27 +126,36 @@
 		..()
 		reagents.add_reagent("sugar", 50)
 
-/obj/item/weapon/reagent_containers/food/condiment/saltshaker		//Seperate from above since it's a small shaker rather then
-	name = "Salt Shaker"											//	a large one.
-	desc = "Salt. From space oceans, presumably."
-	icon_state = "saltshakersmall"
-	possible_transfer_amounts = list(1,20) //for clown turning the lid off
+/obj/item/weapon/reagent_containers/food/condiment/small
+	possible_transfer_amounts = list(1,20)
 	amount_per_transfer_from_this = 1
 	volume = 20
+	center_of_mass = null
+	on_reagent_change()	return
+
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker	//Seperate from above since it's a small shaker rather then
+	name = "salt shaker"											//	a large one.
+	desc = "Salt. From space oceans, presumably."
+	icon_state = "saltshakersmall"
 	New()
 		..()
 		reagents.add_reagent("sodiumchloride", 20)
 
-/obj/item/weapon/reagent_containers/food/condiment/peppermill
-	name = "Pepper Mill"
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill
+	name = "pepper mill"
 	desc = "Often used to flavor food or make people sneeze."
 	icon_state = "peppermillsmall"
-	possible_transfer_amounts = list(1,20) //for clown turning the lid off
-	amount_per_transfer_from_this = 1
-	volume = 20
 	New()
 		..()
 		reagents.add_reagent("blackpepper", 20)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/sugar
+	name = "sugar"
+	desc = "Sweetness in a bottle"
+	icon_state = "sugarsmall"
+	New()
+		..()
+		reagents.add_reagent("sugar", 20)
 
 /obj/item/weapon/reagent_containers/food/condiment/flour
 	name = "flour sack"
@@ -154,6 +163,7 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "flour"
 	item_state = "flour"
+	on_reagent_change()	return
 	New()
 		..()
 		reagents.add_reagent("flour", 30)

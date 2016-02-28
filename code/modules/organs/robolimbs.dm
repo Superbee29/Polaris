@@ -15,7 +15,7 @@ var/datum/robolimb/basic_robolimb
 	var/desc = "A generic unbranded robotic prosthesis." // Seen when examining a limb.
 	var/icon = 'icons/mob/human_races/robotic.dmi'       // Icon base to draw from.
 	var/unavailable_at_chargen                           // If set, not available at chargen.
-	var/list/species_cannot_use = list()
+	var/list/species_cannot_use = list("Teshari")
 
 /datum/robolimb/bishop
 	company = "Bishop"
@@ -41,3 +41,8 @@ var/datum/robolimb/basic_robolimb
 	company = "Morpheus"
 	desc = "This limb is simple and functional; no effort has been made to make it look human."
 	icon = 'icons/mob/human_races/cyberlimbs/ipc.dmi'
+
+/datum/robolimb/wardtakahashi
+	company = "Ward-Takahashi"
+	desc = "This limb features sleek black and white polymers."
+	icon = 'icons/mob/human_races/cyberlimbs/wardtakahashi.dmi'

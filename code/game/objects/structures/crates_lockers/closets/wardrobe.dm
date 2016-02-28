@@ -139,6 +139,7 @@
 	new /obj/item/weapon/storage/backpack/cultpack (src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
 	new /obj/item/weapon/storage/fancy/candle_box(src)
+	new /obj/item/weapon/deck/tarot(src)
 	return
 
 
@@ -295,6 +296,9 @@
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/head/soft/mime(src)
+	new /obj/item/clothing/head/soft/mime(src)
+	new /obj/item/clothing/head/soft/mime(src)
 	return
 
 
@@ -447,6 +451,11 @@
 	new /obj/item/clothing/under/rank/medical/blue(src)
 	new /obj/item/clothing/under/rank/medical/green(src)
 	new /obj/item/clothing/under/rank/medical/purple(src)
+	new /obj/item/clothing/under/rank/medical/black(src)
+	new /obj/item/clothing/head/surgery/purple(src)
+	new /obj/item/clothing/head/surgery/blue(src)
+	new /obj/item/clothing/head/surgery/green(src)
+	new /obj/item/clothing/head/surgery/black(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/shoes/white(src)
 	new /obj/item/clothing/suit/storage/toggle/labcoat(src)
@@ -524,6 +533,7 @@
 	new /obj/item/clothing/suit/armor/tactical(src)
 	new /obj/item/clothing/head/helmet/tactical(src)
 	new /obj/item/clothing/mask/balaclava/tactical(src)
+	new /obj/item/clothing/mask/balaclava(src)
 	new /obj/item/clothing/glasses/sunglasses/sechud/tactical(src)
 	if(prob(25))
 		new /obj/item/weapon/storage/belt/security/tactical/bandolier(src)
@@ -547,10 +557,12 @@
 	new /obj/item/clothing/under/rank/centcom(src)
 	new /obj/item/clothing/under/ert(src)
 	new /obj/item/clothing/under/syndicate/combat(src)
-	new /obj/item/device/radio/headset/ert(src)
+	new /obj/item/device/radio/headset/ert/alt(src)
 	new /obj/item/clothing/glasses/sunglasses(src)
 	new /obj/item/clothing/shoes/swat(src)
 	new /obj/item/clothing/gloves/swat(src)
+	new /obj/item/clothing/mask/balaclava/tactical(src)
+	new /obj/item/clothing/mask/balaclava(src)
 	new /obj/item/clothing/mask/bandana/skull(src)
 	new /obj/item/clothing/mask/bandana/skull(src)
 	return

@@ -6,12 +6,14 @@
 	name = "implant"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "implant"
+	w_class = 1
 	var/implanted = null
 	var/mob/imp_in = null
 	var/obj/item/organ/external/part = null
 	var/implant_color = "b"
 	var/allow_reagents = 0
 	var/malfunction = 0
+	show_messages = 1
 
 	proc/trigger(emote, source as mob)
 		return

@@ -61,6 +61,36 @@
 		name = "Short Hair 2"
 		icon_state = "hair_shorthair3"
 
+	teshari
+		name = "Teshari Default"
+		icon_state = "seromi_default"
+		species_allowed = list("Teshari")
+
+	teshari_excited
+		name = "Teshari Spiky"
+		icon_state = "seromi_spiky"
+		species_allowed = list("Teshari")
+
+	teshari_long
+		name = "Teshari Overgrown"
+		icon_state = "seromi_long"
+		species_allowed = list("Teshari")
+
+	teshari_burst
+		name = "Teshari Starburst"
+		icon_state = "seromi_burst"
+		species_allowed = list("Teshari")
+
+	teshari_burst
+		name = "Teshari Short Starburst"
+		icon_state = "seromi_burst_short"
+		species_allowed = list("Teshari")
+
+	teshari_mohawk
+		name = "Teshari Mohawk"
+		icon_state = "seromi_mohawk"
+		species_allowed = list("Teshari")
+
 	cut
 		name = "Cut Hair"
 		icon_state = "hair_c"
@@ -435,81 +465,6 @@
 		name = "Bald"
 		icon_state = "bald"
 
-	icp_screen_pink
-		name = "pink IPC screen"
-		icon_state = "ipc_pink"
-		species_allowed = list("Machine")
-
-	icp_screen_red
-		name = "red IPC screen"
-		icon_state = "ipc_red"
-		species_allowed = list("Machine")
-
-	icp_screen_green
-		name = "green IPC screen"
-		icon_state = "ipc_green"
-		species_allowed = list("Machine")
-
-	icp_screen_blue
-		name = "blue IPC screen"
-		icon_state = "ipc_blue"
-		species_allowed = list("Machine")
-
-	icp_screen_breakout
-		name = "breakout IPC screen"
-		icon_state = "ipc_breakout"
-		species_allowed = list("Machine")
-
-	icp_screen_eight
-		name = "eight IPC screen"
-		icon_state = "ipc_eight"
-		species_allowed = list("Machine")
-
-	icp_screen_goggles
-		name = "goggles IPC screen"
-		icon_state = "ipc_goggles"
-		species_allowed = list("Machine")
-
-	icp_screen_heart
-		name = "heart IPC screen"
-		icon_state = "ipc_heart"
-		species_allowed = list("Machine")
-
-	icp_screen_monoeye
-		name = "monoeye IPC screen"
-		icon_state = "ipc_monoeye"
-		species_allowed = list("Machine")
-
-	icp_screen_nature
-		name = "nature IPC screen"
-		icon_state = "ipc_nature"
-		species_allowed = list("Machine")
-
-	icp_screen_orange
-		name = "orange IPC screen"
-		icon_state = "ipc_orange"
-		species_allowed = list("Machine")
-
-	icp_screen_purple
-		name = "purple IPC screen"
-		icon_state = "ipc_purple"
-		species_allowed = list("Machine")
-
-	icp_screen_shower
-		name = "shower IPC screen"
-		icon_state = "ipc_shower"
-		species_allowed = list("Machine")
-
-	icp_screen_static
-		name = "static IPC screen"
-		icon_state = "ipc_static"
-		species_allowed = list("Machine")
-
-	icp_screen_yellow
-		name = "yellow IPC screen"
-		icon_state = "ipc_yellow"
-		species_allowed = list("Machine")
-
 /*
 ///////////////////////////////////
 /  =---------------------------=  /
@@ -527,7 +482,25 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine")
+		species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Teshari")
+
+	teshari_beard
+		name = "Teshari Beard"
+		icon_state = "seromi_chin"
+		species_allowed = list("Teshari")
+		gender = NEUTER
+
+	teshari_scraggly
+		name = "Teshari Scraggly"
+		icon_state = "seromi_scraggly"
+		species_allowed = list("Teshari")
+		gender = NEUTER
+
+	teshari_chops
+		name = "Teshari Chops"
+		icon_state = "seromi_gap"
+		species_allowed = list("Teshari")
+		gender = NEUTER
 
 	watson
 		name = "Watson Mustache"

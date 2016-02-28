@@ -58,7 +58,7 @@
 		)
 
 	if(do_after(src, breakouttime))
-		if(!handcuffed || buckled)
+		if(!handcuffed)
 			return
 		visible_message(
 			"<span class='danger'>\The [src] manages to remove \the [handcuffed]!</span>",
@@ -155,9 +155,6 @@
 	return ..()
 
 /mob/living/carbon/escape_buckle()
-	if(!canClick())
-		return
-
 	setClickCooldown(100)
 	if(!buckled) return
 

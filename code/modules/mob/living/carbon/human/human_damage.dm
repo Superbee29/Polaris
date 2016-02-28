@@ -5,6 +5,7 @@
 		health = maxHealth
 		stat = CONSCIOUS
 		return
+
 	var/total_burn  = 0
 	var/total_brute = 0
 	for(var/obj/item/organ/external/O in organs)	//hardcoded to streamline things a bit
@@ -13,11 +14,7 @@
 		total_brute += O.brute_dam
 		total_burn  += O.burn_dam
 
-	var/oxy_l = getOxyLoss()
-	var/tox_l = ((species.flags & NO_POISON) ? 0 : getToxLoss())
-	var/clone_l = getCloneLoss()
-
-	health = maxHealth - oxy_l - tox_l - clone_l - total_burn - total_brute
+	health = maxHealth - getOxyLoss() - getToxLoss() - getCloneLoss() - total_burn - total_brute
 
 	//TODO: fix husking
 	if( ((maxHealth - total_burn) < config.health_threshold_dead) && stat == DEAD)
@@ -70,7 +67,7 @@
 /mob/living/carbon/human/getBruteLoss()
 	var/amount = 0
 	for(var/obj/item/organ/external/O in organs)
-		if(O.status & ORGAN_ROBOT)
+		if((O.status & ORGAN_ROBOT) && !O.vital)
 			continue //robot limbs don't count towards shock and crit
 		amount += O.brute_dam
 	return amount
@@ -78,7 +75,7 @@
 /mob/living/carbon/human/getFireLoss()
 	var/amount = 0
 	for(var/obj/item/organ/external/O in organs)
-		if(O.status & ORGAN_ROBOT)
+		if((O.status & ORGAN_ROBOT) && !O.vital)
 			continue //robot limbs don't count towards shock and crit
 		amount += O.burn_dam
 	return amount
@@ -321,10 +318,10 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 This function restores the subjects blood to max.
 */
 /mob/living/carbon/human/proc/restore_blood()
-	if(should_have_organ(O_HEART))
-		var/blood_volume = vessel.get_reagent_amount("blood")
-		vessel.add_reagent("blood",560.0-blood_volume)
-
+	if(!should_have_organ(O_HEART))
+		return
+	if(vessel.total_volume < species.blood_volume)
+		vessel.add_reagent("blood", species.blood_volume - vessel.total_volume)
 
 /*
 This function restores all organs.

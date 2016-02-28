@@ -37,7 +37,7 @@
 		playsound(chassis, fire_sound, fire_volume, 1)
 		projectiles--
 		var/P = new projectile(curloc)
-		Fire(P, target, aimloc)
+		Fire(P, target)
 		if(fire_cooldown)
 			sleep(fire_cooldown)
 	if(auto_rearm)
@@ -46,16 +46,9 @@
 	do_after_cooldown()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/weapon/proc/Fire(atom/A, atom/target, turf/aimloc)
+/obj/item/mecha_parts/mecha_equipment/weapon/proc/Fire(atom/A, atom/target)
 	var/obj/item/projectile/P = A
-	P.shot_from = src.name
-	P.original = target
-	P.starting = P.loc
-	P.current = P.loc
-	P.firer = chassis.occupant
-	P.yo = aimloc.y - P.loc.y
-	P.xo = aimloc.x - P.loc.x
-	P.process()
+	P.launch(target) 
 
 /obj/item/mecha_parts/mecha_equipment/weapon/energy
 	name = "general energy weapon"
@@ -225,6 +218,24 @@
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/Fire(atom/movable/AM, atom/target, turf/aimloc)
 	AM.throw_at(target,missile_range, missile_speed, chassis)
+	
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare
+	name = "\improper BNI Flare Launcher"
+	icon_state = "mecha_flaregun"
+	projectile = /obj/item/device/flashlight/flare
+	fire_sound = 'sound/weapons/tablehit1.ogg'
+	auto_rearm = 1
+	fire_cooldown = 20
+	projectiles_per_shot = 1
+	projectile_energy_cost = 20
+	missile_speed = 1
+	missile_range = 15
+	required_type = /obj/mecha  //Why restrict it to just mining or combat mechs?
+	
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/flare/Fire(atom/movable/AM, atom/target, turf/aimloc)
+	var/obj/item/device/flashlight/flare/fired = AM
+	fired.ignite()
+	..()
 
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive
 	name = "\improper SRM-8 missile rack"
@@ -235,7 +246,7 @@
 	projectile_energy_cost = 1000
 	equip_cooldown = 60
 
-/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive/Fire(atom/movable/AM, atom/target, turf/aimloc)
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive/Fire(atom/movable/AM, atom/target)
 	var/obj/item/missile/M = AM
 	M.primed = 1
 	..()

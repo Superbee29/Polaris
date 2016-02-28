@@ -23,11 +23,6 @@
 
 // Some arbitrary defines to be used by self-pruning global lists. (see master_controller)
 #define PROCESS_KILL 26 // Used to trigger removal from a processing list.
-
-// Age limits on a character.
-#define AGE_MIN 17
-#define AGE_MAX 85
-
 #define MAX_GEAR_COST 10 // Used in chargen for accessory loadout limit.
 
 // Preference toggles.
@@ -181,3 +176,8 @@
 #define COLOR_PALE_RED_GRAY "#CC9090"
 #define COLOR_PALE_PURPLE_GRAY "#BDA2BA"
 #define COLOR_PURPLE_GRAY "#A2819E"
+
+// Vending stuff
+#define CAT_NORMAL 1
+#define CAT_HIDDEN 2
+#define CAT_COIN   4
