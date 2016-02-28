@@ -108,7 +108,7 @@
 		fields++
 		id++
 		text = copytext(text, 1, found) + "<font face=\"[deffont]\"><A href='?src=\ref[src];write=[id]' class='info_link'>\[write\]</A></font>" + copytext(text, found+length("(FIELD PLACEHOLDER)"))
-		laststart = found + length("<font face=\"[deffont]\"><A href='?src=\ref[src];write=[id]' class='info_link'>\[write\]</A></font>(FIELD PLACEHOLDER)") + 1
+		laststart = found + length("<font face=\"[deffont]\"><A href='?src=\ref[src];write=[id]' class='info_link'>\[write\]</A></font>")
 
 	if (fields > 25 || info_parts > 10)
 		user << "<span class='warning'>Too many fields or text parts (created with \[hr\]).</span>"
@@ -119,10 +119,10 @@
 		else
 			var/field = text2num(index)
 			var/last_len = length(info)
-			//user << "Attempting to write into [field]. field"
-			info = replacetext(info, "<A href='?src=\ref[src];write=[field]' class='info_link'>", text + "<A href='?src=\ref[src];write=[field]'>")
+			user << "Attempting to write into [field]. field"
+			info = replacetext(info, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=[id]' class='info_link'>\[write\]</A></font>", text + "<font face=\"[deffont]\"><A href='?src=\ref[src];write=[id]' class='info_link'>\[write\]</A></font>")
 			if (last_len == length(info)) // no change was done --> field was not found
-				//user << "Field does not exist"
+				user << "Field does not exist"
 				return
 		free_space -= length(strip_html_properly(text))
 
@@ -152,15 +152,14 @@
 
 		t = replacetext(t, "\n", "<BR>")
 		write_info(t, id, i, usr)
-		usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY><font face='[deffont]'><A href='?src=\ref[src];erase=all'>Erase all</A></font><br>[info]<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font></BODY></HTML>", "window=[name]")
-		update_icon()
 	if(href_list["erase"])
 		var/id = href_list["erase"]
 		if (id == "all")
 			clear_board()
 		else
 			clear_part(text2num(id))
-		update_icon()
+	update_icon()
+	usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY><font face='[deffont]'><A href='?src=\ref[src];erase=all'>Erase all</A></font><br>[info]<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font></BODY></HTML>", "window=[name]")
 
 /obj/structure/whiteboard/proc/clear_board()
 	info = ""
